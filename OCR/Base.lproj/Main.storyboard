@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11134" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,21 +675,35 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="OCR" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="76" y="-38"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="WindowController" customModule="OCR" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="OCR" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="400" height="300"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <value key="minSize" type="size" width="240" height="240"/>
+                        <toolbar key="toolbar" implicitIdentifier="28265AF8-BC57-4016-BE81-9F73583A0C1B" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="hgx-Dn-bwG">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="5AA7DA3F-613F-4EB8-BD51-4F570D4D7DF8" label="Toolbar Item" paletteLabel="Toolbar Item" tag="-1" bordered="YES" id="iIm-hi-ZWa">
+                                    <size key="minSize" width="24" height="25"/>
+                                    <size key="maxSize" width="24" height="25"/>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="m4C-eh-2zc"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="QtS-02-Gkz"/>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="QtS-02-Gkz"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -703,11 +719,37 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="OCR" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="m2S-Jp-Qdl" customClass="DropView" customModule="OCR" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wAq-Ej-j0v">
+                                <rect key="frame" x="140" y="121" width="200" height="28"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Drag images here" id="Fdl-62-7si">
+                                    <font key="font" metaFont="systemBold" size="24"/>
+                                    <color key="textColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="gT0-C6-S0F">
+                                <rect key="frame" x="224" y="119" width="32" height="32"/>
+                            </progressIndicator>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="wAq-Ej-j0v" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="Id5-Zv-gqz"/>
+                            <constraint firstItem="gT0-C6-S0F" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="Pg2-nS-WRB"/>
+                            <constraint firstItem="wAq-Ej-j0v" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="dKJ-hK-lbi"/>
+                            <constraint firstItem="gT0-C6-S0F" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="tJY-cl-oOi"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="placeholderLabel" destination="wAq-Ej-j0v" id="R4g-wP-bbC"/>
+                            <outlet property="progressIndicator" destination="gT0-C6-S0F" id="Yoq-Kw-jK1"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="dropView" destination="m2S-Jp-Qdl" id="VFO-re-Sgh"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,6 +11,10 @@
 		D5ECAC4027B40CE4005DBE88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ECAC3F27B40CE4005DBE88 /* ViewController.swift */; };
 		D5ECAC4227B40CE5005DBE88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5ECAC4127B40CE5005DBE88 /* Assets.xcassets */; };
 		D5ECAC4527B40CE5005DBE88 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5ECAC4327B40CE5005DBE88 /* Main.storyboard */; };
+		D5ECAC4D27B40D25005DBE88 /* TextProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ECAC4C27B40D25005DBE88 /* TextProcessor.swift */; };
+		D5ECAC4F27B40DB2005DBE88 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ECAC4E27B40DB2005DBE88 /* WindowController.swift */; };
+		D5ECAC5527B4102E005DBE88 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5ECAC5727B4102E005DBE88 /* Localizable.strings */; };
+		D5ECAC5A27B41549005DBE88 /* DropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ECAC5927B41549005DBE88 /* DropView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,13 @@
 		D5ECAC4127B40CE5005DBE88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5ECAC4427B40CE5005DBE88 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D5ECAC4627B40CE5005DBE88 /* OCR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OCR.entitlements; sourceTree = "<group>"; };
+		D5ECAC4C27B40D25005DBE88 /* TextProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextProcessor.swift; sourceTree = "<group>"; };
+		D5ECAC4E27B40DB2005DBE88 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		D5ECAC5027B41012005DBE88 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
+		D5ECAC5227B41018005DBE88 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		D5ECAC5627B4102E005DBE88 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D5ECAC5827B41030005DBE88 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D5ECAC5927B41549005DBE88 /* DropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +50,9 @@
 				D5ECAC3C27B40CE4005DBE88 /* OCR */,
 				D5ECAC3B27B40CE4005DBE88 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		D5ECAC3B27B40CE4005DBE88 /* Products */ = {
 			isa = PBXGroup;
@@ -53,10 +66,14 @@
 			isa = PBXGroup;
 			children = (
 				D5ECAC3D27B40CE4005DBE88 /* AppDelegate.swift */,
+				D5ECAC4E27B40DB2005DBE88 /* WindowController.swift */,
 				D5ECAC3F27B40CE4005DBE88 /* ViewController.swift */,
+				D5ECAC5927B41549005DBE88 /* DropView.swift */,
+				D5ECAC4C27B40D25005DBE88 /* TextProcessor.swift */,
 				D5ECAC4127B40CE5005DBE88 /* Assets.xcassets */,
 				D5ECAC4327B40CE5005DBE88 /* Main.storyboard */,
 				D5ECAC4627B40CE5005DBE88 /* OCR.entitlements */,
+				D5ECAC5727B4102E005DBE88 /* Localizable.strings */,
 			);
 			path = OCR;
 			sourceTree = "<group>";
@@ -90,6 +107,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
+				ORGANIZATIONNAME = Bernson;
 				TargetAttributes = {
 					D5ECAC3927B40CE4005DBE88 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -103,6 +121,7 @@
 			knownRegions = (
 				en,
 				Base,
+				nl,
 			);
 			mainGroup = D5ECAC3127B40CE4005DBE88;
 			productRefGroup = D5ECAC3B27B40CE4005DBE88 /* Products */;
@@ -120,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5ECAC4227B40CE5005DBE88 /* Assets.xcassets in Resources */,
+				D5ECAC5527B4102E005DBE88 /* Localizable.strings in Resources */,
 				D5ECAC4527B40CE5005DBE88 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,7 +152,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5ECAC4027B40CE4005DBE88 /* ViewController.swift in Sources */,
+				D5ECAC4F27B40DB2005DBE88 /* WindowController.swift in Sources */,
+				D5ECAC4D27B40D25005DBE88 /* TextProcessor.swift in Sources */,
 				D5ECAC3E27B40CE4005DBE88 /* AppDelegate.swift in Sources */,
+				D5ECAC5A27B41549005DBE88 /* DropView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,8 +166,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				D5ECAC4427B40CE5005DBE88 /* Base */,
+				D5ECAC5027B41012005DBE88 /* nl */,
+				D5ECAC5227B41018005DBE88 /* en */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D5ECAC5727B4102E005DBE88 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5ECAC5627B4102E005DBE88 /* en */,
+				D5ECAC5827B41030005DBE88 /* nl */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -154,6 +188,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -201,7 +236,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -215,6 +250,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -256,7 +292,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -277,6 +313,7 @@
 				DEVELOPMENT_TEAM = 3W68UU92K3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -304,6 +341,7 @@
 				DEVELOPMENT_TEAM = 3W68UU92K3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  OCR
+
+  Created by Mathijs Bernson on 09/02/2022.
+  Copyright © 2022 Bernson. All rights reserved.
+*/
+
+"foo" = "bar";
