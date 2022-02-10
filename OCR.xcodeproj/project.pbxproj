@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5A9763227B52B23003FBCE7 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A9763127B52B23003FBCE7 /* PreferencesController.swift */; };
 		D5ECAC3E27B40CE4005DBE88 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ECAC3D27B40CE4005DBE88 /* AppDelegate.swift */; };
 		D5ECAC4027B40CE4005DBE88 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5ECAC3F27B40CE4005DBE88 /* ViewController.swift */; };
 		D5ECAC4227B40CE5005DBE88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5ECAC4127B40CE5005DBE88 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D5A9763127B52B23003FBCE7 /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		D5ECAC3A27B40CE4005DBE88 /* OCR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5ECAC3D27B40CE4005DBE88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5ECAC3F27B40CE4005DBE88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				D5ECAC4327B40CE5005DBE88 /* Main.storyboard */,
 				D5ECAC4627B40CE5005DBE88 /* OCR.entitlements */,
 				D5ECAC5727B4102E005DBE88 /* Localizable.strings */,
+				D5A9763127B52B23003FBCE7 /* PreferencesController.swift */,
 			);
 			path = OCR;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5A9763227B52B23003FBCE7 /* PreferencesController.swift in Sources */,
 				D5ECAC4027B40CE4005DBE88 /* ViewController.swift in Sources */,
 				D5ECAC4F27B40DB2005DBE88 /* WindowController.swift in Sources */,
 				D5ECAC4D27B40D25005DBE88 /* TextProcessor.swift in Sources */,

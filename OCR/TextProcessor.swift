@@ -26,14 +26,25 @@ protocol TextProcessorDelegate: AnyObject {
   func textProcessingDidError(_ error: Error)
 }
 
-class TextProcessor: NSObject, DropViewDelegate {
+class TextProcessor: NSObject, DropViewDelegate, PreferencesDelegate {
+
+  // MARK: Public properties
+
+  static let shared = TextProcessor()
+
   weak var delegate: TextProcessorDelegate?
 
-  // TODO: Custom dictionary support
-  let customWords: [String]? = nil
-  let recognitionLanguages: [String] = ["nl-NL", "en-US"]
-  let supportedExtensions: Set<String> = ["jpg", "jpeg", "png"]
-  let usesLanguageCorrection = false
+  // MARK: Private properties
+
+  private let supportedExtensions: Set<String> = ["jpg", "jpeg", "png"]
+
+  private var customWords: [String]? = nil
+  private var recognitionLanguages: [String] = []
+  private var usesLanguageCorrection = false
+
+  private override init() {
+    // Private because this is a singleton
+  }
 
   // MARK: DropViewDelegate
 
@@ -64,44 +75,6 @@ class TextProcessor: NSObject, DropViewDelegate {
     return true
   }
 
-  //  /// validates if a drop can be made
-  //  func validateDrop(info: DropInfo) -> Bool {
-  //    guard info.hasItemsConforming(to: draggedFileTypes)
-  //    else { return false }
-  //
-  //    let items = info.itemProviders(for: draggedFileTypes)
-  //    return !items.isEmpty
-  //  }
-  //
-  //  /// provides custom behavior when an object is dragged over the onDrop view
-  //  func dropEntered(info: DropInfo) {
-  //    state = .pendingDrop
-  //  }
-  //
-  //  /// provides custom behavior when an object is dragged off of the onDrop view
-  //  func dropExited(info: DropInfo) {
-  //    state = .idle
-  //  }
-  //
-  //  func performDrop(info: DropInfo) -> Bool {
-  //    state = .processing
-  //
-  //    let items = info.itemProviders(for: draggedFileTypes)
-  //    for item in items {
-  //      _ = item.loadObject(ofClass: URL.self) { url, _ in
-  //        if let url = url, supportedExtensions.contains(url.pathExtension) {
-  //          do {
-  //            try processFile(at: url)
-  //          } catch {
-  //            handleError(error: error)
-  //          }
-  //        }
-  //      }
-  //    }
-  //
-  //    return true
-  //  }
-
   /// Note: gets called from a background thread
   private func processFile(at url: URL) throws {
     print("Image received: \(url.absoluteString)")
@@ -121,8 +94,6 @@ class TextProcessor: NSObject, DropViewDelegate {
         do {
           let result = try self.processVisionResults(from: request, url: url)
           try self.writeResultsToFile(result: result, url: url)
-          //          state = .idle
-          //          self.results.append(result)
         } catch {
           self.handleError(error)
         }
@@ -139,9 +110,10 @@ class TextProcessor: NSObject, DropViewDelegate {
   }
 
   private func handleError(_ error: Error) {
-    // TODO
     print("Error occurred: \(error.localizedDescription)")
-    delegate?.textProcessingDidError(error)
+    DispatchQueue.main.async {
+      self.delegate?.textProcessingDidError(error)
+    }
   }
 
   private func processVisionResults(from request: VNRecognizeTextRequest, url: URL) throws -> TextProcessingResult {
@@ -150,9 +122,12 @@ class TextProcessor: NSObject, DropViewDelegate {
     }
 
     print("Found \(results.count) results in file \(url.absoluteString)!")
-    let result = TextProcessingResult(strings: results.compactMap {
+
+    let strings: [String] = results.compactMap {
       $0.topCandidates(1).first?.string
-    })
+    }
+    let result = TextProcessingResult(strings: strings)
+
     return result
   }
 
@@ -163,13 +138,61 @@ class TextProcessor: NSObject, DropViewDelegate {
     print("Writing to: \(destination.absoluteString)")
     let string = result.strings.joined(separator: "\n")
     try string.write(to: destination, atomically: true, encoding: .utf8)
-    delegate?.textProcessedSuccessfully(atFileURL: destination)
+    DispatchQueue.main.async {
+      self.delegate?.textProcessedSuccessfully(atFileURL: destination)
+    }
+  }
+
+  // MARK: Utilities
+
+  static func supportedLanguages(recognitionLevel: VNRequestTextRecognitionLevel) -> [String]? {
+    do {
+      if #available(macOS 12.0, *) {
+        let request = VNRecognizeTextRequest()
+        request.recognitionLevel = recognitionLevel
+        return try request.supportedRecognitionLanguages()
+      } else if #available(macOS 11.0, *) {
+        return try VNRecognizeTextRequest.supportedRecognitionLanguages(for: .accurate, revision: VNRecognizeTextRequestRevision2)
+      } else {
+        return try VNRecognizeTextRequest.supportedRecognitionLanguages(for: .accurate, revision: VNRecognizeTextRequestRevision1)
+      }
+    } catch {
+      print("Unable to get supported languages")
+      return nil
+    }
+  }
+
+  // MARK: Preferences and options
+
+  func setLanguagesForCorrection(_ languages: [String]) {
+    recognitionLanguages = languages
+    print("Languages for recognition set to: \(languages.joined(separator: ", "))")
+  }
+
+  func setUserDictionary(_ dictionary: [String]) {
+    if dictionary.isEmpty {
+      customWords = nil
+      print("Custom dictionary saved: (empty)")
+    } else {
+      customWords = dictionary
+      print("Custom dictionary saved: \(dictionary.joined(separator: ", "))")
+    }
+  }
+
+  func setLanguageCorrectionEnabled(_ isLanguageCorrectionEnabled: Bool) {
+    usesLanguageCorrection = isLanguageCorrectionEnabled
+
+    if isLanguageCorrectionEnabled {
+      print("Language correction enabled")
+    } else {
+      print("Language correction disabled")
+    }
   }
 }
 
 struct RecognitionError: LocalizedError {
   let errorDescription: String?
 
-  static let noResults = RecognitionError(errorDescription: "No text was found.")
-  static let imageLoadFailed = RecognitionError(errorDescription: "Failed to load image.")
+  static let noResults = RecognitionError(errorDescription: NSLocalizedString("error.no.text.in.image", comment: "error"))
+  static let imageLoadFailed = RecognitionError(errorDescription: NSLocalizedString("image.load.failed", comment: "error"))
 }

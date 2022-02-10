@@ -6,4 +6,5 @@
   Copyright © 2022 Bernson. All rights reserved.
 */
 
-"foo" = "bar";
+"error.no.text.in.image" = "No text was found in the image.";
+"image.load.failed" = "Could not load the image because it may be malformed.";

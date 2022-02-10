@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import AudioToolbox
 
 @objc protocol DropViewDelegate: AnyObject {
   func draggingEntered(forDropView dropView: DropView, sender: NSDraggingInfo) -> NSDragOperation
@@ -19,6 +20,8 @@ class DropView: NSView {
 
   @IBOutlet weak var progressIndicator: NSProgressIndicator!
   @IBOutlet weak var placeholderLabel: NSTextField!
+
+  let successSound = NSSound(named: "Hero")
 
   var isHighlighted: Bool = false {
     didSet {
@@ -45,6 +48,8 @@ class DropView: NSView {
     super.awakeFromNib()
 
     progressIndicator.isHidden = true
+
+    TextProcessor.shared.delegate = self
   }
 
   override func draw(_ dirtyRect: NSRect) {
@@ -82,5 +87,24 @@ class DropView: NSView {
 
   override func draggingEnded(_ sender: NSDraggingInfo) {
     isHighlighted = false
+  }
+}
+
+extension DropView: TextProcessorDelegate {
+  func textProcessedSuccessfully(atFileURL url: URL) {
+    isLoading = false
+    placeholderLabel.isHidden = false
+
+    // Play sound
+    successSound?.play()
+  }
+
+  func textProcessingDidError(_ error: Error) {
+    isLoading = false
+    placeholderLabel.isHidden = false
+
+    // Show alert
+    let alert = NSAlert(error: error)
+    alert.runModal()
   }
 }

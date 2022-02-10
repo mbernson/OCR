@@ -6,4 +6,5 @@
   Copyright © 2022 Bernson. All rights reserved.
 */
 
-"foo" = "bar";
+"error.no.text.in.image" = "Geen tekst gevonden in de afbeelding.";
+"image.load.failed" = "Kon de afbeelding niet laden omdat deze het verkeerde formaat heeft.";

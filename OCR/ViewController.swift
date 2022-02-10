@@ -16,11 +16,18 @@ enum OCRState {
   case finished
 }
 
+protocol PreferencesDelegate: AnyObject {
+  func setLanguagesForCorrection(_ languages: [String])
+  func setUserDictionary(_ dictionary: [String])
+  func setLanguageCorrectionEnabled(_ isLanguageCorrectionEnabled: Bool)
+}
+
 class ViewController: NSViewController {
 
   @IBOutlet weak var dropView: DropView!
 
-  let textProcessor = TextProcessor()
+  let userDefaults = UserDefaults.standard
+  let textProcessor = TextProcessor.shared
 
   // MARK: View lifecycle
 
@@ -31,29 +38,13 @@ class ViewController: NSViewController {
 
     view.registerForDraggedTypes([NSPasteboard.PasteboardType.fileURL])
 
-    if let languages = supportedLanguages(recognitionLevel: .accurate) {
-      print("Languages:")
-      print(languages)
-      // TODO: Create menu
-    }
-  }
+    let isLanguageCorrectionEnabled: Bool = userDefaults.bool(forKey: UserDefaultsKey.isLanguageCorrectionEnabled.rawValue)
+    textProcessor.setLanguageCorrectionEnabled(isLanguageCorrectionEnabled)
 
-  // MARK: Utilities
+    let languagesForCorrection: [String] = userDefaults.array(forKey: UserDefaultsKey.languagesForCorrection.rawValue) as? [String] ?? []
+    textProcessor.setLanguagesForCorrection(languagesForCorrection)
 
-  private func supportedLanguages(recognitionLevel: VNRequestTextRecognitionLevel) -> [String]? {
-    do {
-      if #available(macOS 12.0, *) {
-        let request = VNRecognizeTextRequest()
-        request.recognitionLevel = recognitionLevel
-        let languages = try request.supportedRecognitionLanguages()
-        return languages
-      } else {
-        let languages = try VNRecognizeTextRequest.supportedRecognitionLanguages(for: .accurate, revision: 1)
-        return languages
-      }
-    } catch {
-      NSLog("Unable to get supported languages")
-      return nil
-    }
+    let userDictionary: [String] = userDefaults.array(forKey: UserDefaultsKey.userDictionary.rawValue) as? [String] ?? []
+    textProcessor.setUserDictionary(userDictionary)
   }
 }
