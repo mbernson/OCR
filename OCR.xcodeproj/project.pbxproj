@@ -20,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		D5A9763127B52B23003FBCE7 /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
+		D5A9763427B55C01003FBCE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		D5A9763627B55C02003FBCE7 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
 		D5ECAC3A27B40CE4005DBE88 /* OCR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5ECAC3D27B40CE4005DBE88 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5ECAC3F27B40CE4005DBE88 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,8 +30,6 @@
 		D5ECAC4627B40CE5005DBE88 /* OCR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OCR.entitlements; sourceTree = "<group>"; };
 		D5ECAC4C27B40D25005DBE88 /* TextProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextProcessor.swift; sourceTree = "<group>"; };
 		D5ECAC4E27B40DB2005DBE88 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
-		D5ECAC5027B41012005DBE88 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
-		D5ECAC5227B41018005DBE88 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		D5ECAC5627B4102E005DBE88 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D5ECAC5827B41030005DBE88 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D5ECAC5927B41549005DBE88 /* DropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropView.swift; sourceTree = "<group>"; };
@@ -170,8 +170,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				D5ECAC4427B40CE5005DBE88 /* Base */,
-				D5ECAC5027B41012005DBE88 /* nl */,
-				D5ECAC5227B41018005DBE88 /* en */,
+				D5A9763427B55C01003FBCE7 /* en */,
+				D5A9763627B55C02003FBCE7 /* nl */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
