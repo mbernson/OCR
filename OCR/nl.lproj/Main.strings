@@ -216,7 +216,7 @@
 "kIP-vf-haE.title" = "Show Sidebar";
 
 /* Class = "NSButtonCell"; title = "Use language correction"; ObjectID = "lhz-U4-9cQ"; */
-"lhz-U4-9cQ.title" = "Gebruik taalcorrectie";
+"lhz-U4-9cQ.title" = "Pas taalcorrectie toe op herkende tekst";
 
 /* Class = "NSMenuItem"; title = "Check Grammar With Spelling"; ObjectID = "mK6-2p-4JG"; */
 "mK6-2p-4JG.title" = "Check Grammar With Spelling";
