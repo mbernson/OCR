@@ -72,11 +72,11 @@
 				D5ECAC3F27B40CE4005DBE88 /* ViewController.swift */,
 				D5ECAC5927B41549005DBE88 /* DropView.swift */,
 				D5ECAC4C27B40D25005DBE88 /* TextProcessor.swift */,
+				D5A9763127B52B23003FBCE7 /* PreferencesController.swift */,
 				D5ECAC4127B40CE5005DBE88 /* Assets.xcassets */,
 				D5ECAC4327B40CE5005DBE88 /* Main.storyboard */,
 				D5ECAC4627B40CE5005DBE88 /* OCR.entitlements */,
 				D5ECAC5727B4102E005DBE88 /* Localizable.strings */,
-				D5A9763127B52B23003FBCE7 /* PreferencesController.swift */,
 			);
 			path = OCR;
 			sourceTree = "<group>";
