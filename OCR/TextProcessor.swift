@@ -152,9 +152,9 @@ class TextProcessor: NSObject, DropViewDelegate, PreferencesDelegate {
         request.recognitionLevel = recognitionLevel
         return try request.supportedRecognitionLanguages()
       } else if #available(macOS 11.0, *) {
-        return try VNRecognizeTextRequest.supportedRecognitionLanguages(for: .accurate, revision: VNRecognizeTextRequestRevision2)
+        return try VNRecognizeTextRequest.supportedRecognitionLanguages(for: recognitionLevel, revision: VNRecognizeTextRequestRevision2)
       } else {
-        return try VNRecognizeTextRequest.supportedRecognitionLanguages(for: .accurate, revision: VNRecognizeTextRequestRevision1)
+        return try VNRecognizeTextRequest.supportedRecognitionLanguages(for: recognitionLevel, revision: VNRecognizeTextRequestRevision1)
       }
     } catch {
       print("Unable to get supported languages")
